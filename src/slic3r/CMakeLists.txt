@@ -154,7 +154,7 @@ endif ()
 
 add_library(libslic3r_gui STATIC ${SLIC3R_GUI_SOURCES})
 
-target_link_libraries(libslic3r_gui libslic3r avrdude imgui ${GLEW_LIBRARIES})
+target_link_libraries(libslic3r_gui libslic3r avrdude imgui ${GLEW_LIBRARIES} boost_filesystem boost_log boost_system boost_thread boost_regex boost_locale)
 if (SLIC3R_PCH AND NOT SLIC3R_SYNTAXONLY)
     add_precompiled_header(libslic3r_gui pchheader.hpp FORCEINCLUDE)
 endif ()

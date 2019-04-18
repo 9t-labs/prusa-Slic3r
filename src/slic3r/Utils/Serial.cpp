@@ -384,13 +384,14 @@ void Serial::reset_line_num()
 
 bool Serial::read_line(unsigned timeout, std::string &line, error_code &ec)
 {
-	auto &io_service = get_io_service();
-	asio::deadline_timer timer(io_service);
+//	auto &io_service = get_io_service();
+    boost::asio::io_context io_context;
+	asio::deadline_timer timer(io_context);
 	char c = 0;
 	bool fail = false;
 
 	while (true) {
-		io_service.reset();
+		io_context.reset();
 
 		asio::async_read(*this, boost::asio::buffer(&c, 1), [&](const error_code &read_ec, size_t size) {
 			if (ec || size == 0) {
@@ -411,7 +412,7 @@ bool Serial::read_line(unsigned timeout, std::string &line, error_code &ec)
 			});
 		}
 
-		io_service.run();
+		io_context.run();
 
 		if (fail) {
 			return false;
