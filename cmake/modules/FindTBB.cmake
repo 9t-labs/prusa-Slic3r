@@ -258,7 +258,10 @@ if(NOT TBB_FOUND)
 
   set(TBB_DEFINITIONS_RELEASE "")
   set(TBB_DEFINITIONS_DEBUG "-DTBB_USE_DEBUG=1")
-    
+
+  set(TBB_LIBRARIES "/usr/lib/x86_64-linux-gnu/libtbb.so")
+  set(TBB_LIBRARIES_RELEASE "/usr/lib/x86_64-linux-gnu/libtbb.so")
+
   if(TBB_LIBRARIES_${TBB_BUILD_TYPE})
     set(TBB_DEFINITIONS "${TBB_DEFINITIONS_${TBB_BUILD_TYPE}}")
     set(TBB_LIBRARIES "${TBB_LIBRARIES_${TBB_BUILD_TYPE}}")

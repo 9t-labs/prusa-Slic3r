@@ -185,7 +185,9 @@ target_link_libraries(libslic3r
     libnest2d
     admesh
     miniz
-    ${Boost_LIBRARIES}
+    #${Boost_LIBRARIES}
+        boost_filesystem.a boost_log.a boost_system.a boost_thread.a boost_regex.a boost_locale.a
+        -lpthread
     clipper
     nowide
     ${EXPAT_LIBRARIES}
