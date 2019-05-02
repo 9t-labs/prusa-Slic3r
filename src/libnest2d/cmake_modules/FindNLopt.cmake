@@ -28,8 +28,11 @@ set(NLopt_DIR $ENV{NLOPT})
 if(NOT NLopt_DIR)
 
 	set(NLopt_FOUND TRUE)
-
-	set(_NLopt_LIB_NAMES "libnlopt.a")
+	if(SLIC3R_STATIC)
+		set(_NLopt_LIB_NAMES "libnlopt.a")
+	else()
+		set(_NLopt_LIB_NAMES "nlopt")
+	endif()
 	find_library(NLopt_LIBS
 		NAMES ${_NLopt_LIB_NAMES})
 	if(NOT NLopt_LIBS)
