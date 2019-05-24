@@ -382,8 +382,8 @@ int CLI::run(int argc, char **argv)
                         const auto bed_shape = Slic3r::Polygon::new_scale(
                                 m_print_config.opt<ConfigOptionPoints>("bed_shape")->values);
                         auto centroid = bed_shape.centroid().cast<double>();
-                        auto modifiedCentroid = Point(centroid.x() / 1000000, centroid.y() / 1000000); //FIXME: Why is this happening to the centroid?...
-                        model.center_instances_around_point(modifiedCentroid.cast<double>());
+                        auto unscaleCentroid = Point(unscale<double>(centroid.x()), unscale<double>(centroid.y()));
+                        model.center_instances_around_point(unscaleCentroid.cast<double>());
                     } else {
                         model.center_instances_around_point(m_config.option<ConfigOptionPoint>("center")->value);
                     }
